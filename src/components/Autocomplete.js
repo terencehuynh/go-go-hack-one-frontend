@@ -11,7 +11,9 @@ const styles = {
     margin: "0 auto",
     boxSizing: "border-box",
     padding: 24,
-    fontSize: 36
+    fontSize: 36,
+    display: "flex",
+    alignItems: "center"
   },
   input: {
     border: "none",
@@ -26,21 +28,23 @@ const styles = {
 };
 
 class Autocomplete extends React.Component {
-  state = { suggestion: "" };
+  state = { suggestions: [] };
 
   handleChange = event => {
     const value = event.target.value;
-    const refinedOptions = this.props.options.filter(option =>
+    const suggestions = this.props.options.filter(option =>
       option.startsWith(value)
     );
-    if (value !== "" && refinedOptions.length > 0)
-      this.setState({ suggestion: refinedOptions[0] });
-    else this.setState({ suggestion: "" });
+    if (suggestions.length === 0 || value === "") {
+      this.setState({ suggestions: [] });
+    } else {
+      this.setState({ suggestions: suggestions });
+    }
   };
 
   handleAutocomplete = event => {
     if (event.key === "Tab") {
-      this.props.submitOption(this.state.suggestion);
+      this.props.submitOption(this.state.suggestions[0]);
       event.preventDefault();
     }
   };
@@ -60,16 +64,36 @@ class Autocomplete extends React.Component {
           <input
             className="input"
             disabled
-            defaultValue={this.state.suggestion}
+            defaultValue={
+              this.state.suggestions.length > 0 ? this.state.suggestions[0] : ""
+            }
             style={{
               ...styles.input,
               position: "absolute",
               left: 0,
-              top: -8,
               zIndex: -1,
               color: "#ddd"
             }}
           />
+          <ul
+            className="menu-list"
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 96,
+              marginLeft: 32,
+              backgroundColor: "#fff",
+              border: "1px solid grey"
+            }}
+          >
+            {this.state.suggestions.map(suggestion => (
+              <li
+                style={{ minWidth: 220, padding: 16, boxSizing: "border-box" }}
+              >
+                {suggestion}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

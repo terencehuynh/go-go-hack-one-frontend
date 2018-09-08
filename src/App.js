@@ -12,7 +12,7 @@ class App extends Component {
         <Blurb />
         <Autocomplete
           prompt="I want to find..."
-          options={["patents", "records"]}
+          options={["patents", "records", "reports"]}
           submitOption={result => console.log(result)}
         />
       </React.Fragment>
