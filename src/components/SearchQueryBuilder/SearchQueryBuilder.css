@@ -67,6 +67,14 @@
   flex: 1;
 }
 
+#searchQuery input.autocomplete-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  color: #ddd;
+}
+
 #searchQuery input::placeholder {
   color: #b0b0b0;
   opacity: 1;
@@ -78,4 +86,22 @@
 
 #searchQuery input::-ms-input-placeholder {
   color: #b0b0b0;
+}
+
+#searchQuery .menu-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 56px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#searchQuery .menu-list li {
+  font-size: 1.3125rem;
+  letter-spacing: 0;
+  padding: 8px;
 }

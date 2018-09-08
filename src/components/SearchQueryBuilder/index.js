@@ -43,14 +43,16 @@ const steps = {
 
 class SearchQueryBuilder extends Component {
   state = {
-    isCompleted: false,
+    isCompleting: false,
     currentIndex: 0,
     template: [
       {
         component: "query",
         label: "Help me find",
         placeholder: "something",
-        isCompleting: false
+        isCompleting: false,
+        autocomplete: true,
+        options: ["patents", "records", "reports"]
       }
     ],
     searchQuery: []
@@ -58,10 +60,10 @@ class SearchQueryBuilder extends Component {
 
   onFormSubmit = e => {
     const { onSubmit } = this.props;
-    const { isCompleted, searchQuery, currentIndex } = this.state;
+    const { isCompleting, searchQuery, currentIndex } = this.state;
     e.preventDefault();
 
-    if (isCompleted) {
+    if (isCompleting) {
       onSubmit && onSubmit(searchQuery);
       return;
     }

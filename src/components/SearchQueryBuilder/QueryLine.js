@@ -1,25 +1,38 @@
 import React, { Component } from "react";
+import Autocomplete from "./Autocomplete";
 
 class QueryLine extends Component {
   render() {
     const {
       editable = true,
       label,
-      value,
       placeholder,
       onChange,
-      onNonEditClick
+      onNonEditClick,
+      autocomplete = false,
+      options = [],
+      value
     } = this.props;
+
     if (editable) {
       return (
         <div className="queryLine">
           <span className="label">{label}</span>
-          <input
-            type="text"
-            placeholder={placeholder}
-            text={value}
-            onChange={onChange}
-          />
+          {autocomplete ? (
+            <Autocomplete
+              placeholder={placeholder}
+              text={value}
+              onChange={onChange}
+              options={options}
+            />
+          ) : (
+            <input
+              type="text"
+              placeholder={placeholder}
+              text={value}
+              onChange={onChange}
+            />
+          )}
         </div>
       );
     }
