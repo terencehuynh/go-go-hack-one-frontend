@@ -1,98 +1,172 @@
 import React, { Component } from "react";
+import _get from "lodash.get";
+
 import QueryLine from "./QueryLine";
 import ActionButtons from "./ActionButtons";
 import "./SearchQueryBuilder.css";
 
+const FormComponents = {
+  Query: "query",
+  Actions: "actions"
+};
+
 const ComponentMap = {
-  query: QueryLine,
-  actions: ActionButtons
+  [FormComponents.Query]: QueryLine,
+  [FormComponents.Actions]: ActionButtons
 };
 
 const steps = {
   patents: {
-    actions: [
-      {
-        text: "by number",
+    component: "actions",
+    actions: {
+      "by number": {
+        component: "query",
         label: "by",
-        placeholderValue: "number"
+        placeholder: "number",
+        isCompleting: true
       },
-      {
-        text: "owned by",
+      "owned by": {
+        component: "query",
         label: "owned by",
-        placeholderValue: "ABN or company name"
+        placeholder: "ABN or company name",
+        isCompleting: true
       },
-      {
-        text: "related to",
+      "related to": {
+        component: "query",
         label: "related to",
-        placeholderValue: "topic"
+        placeholder: "topic",
+        isCompleting: true
       }
-    ]
+    }
   }
 };
 
-const showSearch = (
-  <div className="search">
-    <button className="btn">Search</button>
-    <span className="sidebit">
-      or <a href="#">add another condition</a>
-    </span>
-  </div>
-);
-
 class SearchQueryBuilder extends Component {
   state = {
-    isSearchReady: false,
+    isCompleted: false,
+    currentIndex: 0,
     template: [
       {
         component: "query",
         label: "Help me find",
-        placeholder: "something"
+        placeholder: "something",
+        isCompleting: false
       }
     ],
-    searchQuery: [
-      {
-        label: "Help me find",
-        value: "",
-        editable: true
-      }
-    ]
+    searchQuery: []
   };
 
   onFormSubmit = e => {
     const { onSubmit } = this.props;
-    const { isSearchReady, searchQuery } = this.state;
+    const { isCompleted, searchQuery, currentIndex } = this.state;
     e.preventDefault();
-    if (isSearchReady) {
+
+    if (isCompleted) {
       onSubmit && onSubmit(searchQuery);
-    } else {
-      console.log("next");
+      return;
     }
+
+    const currentQuery = _get(searchQuery[currentIndex], "value");
+
+    if (!currentQuery) {
+      return;
+    }
+
+    const nextTemplate = steps[currentQuery];
+
+    if (!nextTemplate) {
+      console.log("not supported");
+      return;
+    }
+
+    this.pushNextTemplate(nextTemplate);
   };
 
-  onTextInputChange = (e, i) => {};
+  onTextInputChange = (i, value) => {
+    const { label } = this.state.template[i];
+    const searchQuery = {
+      value,
+      label
+    };
+    this.setState(prevState => {
+      const currentQuery = prevState.searchQuery;
+      currentQuery[i] = searchQuery;
+      return { searchQuery: currentQuery };
+    });
+  };
+
+  onNonEditClick = i => {
+    this.setState(prevState => {
+      const currentTemplate = prevState.template;
+      const newTemplate = currentTemplate.splice(i + 1);
+      return { currentIndex: i };
+    });
+  };
+
+  pushNextTemplate = (template, removeLast = false) => {
+    this.setState(prevState => {
+      const { isCompleting = false } = template;
+      let currentTemplate = prevState.template;
+      let newIndex = prevState.currentIndex;
+
+      if (removeLast) {
+        currentTemplate.pop();
+        newIndex--;
+      }
+
+      currentTemplate.push(template);
+      newIndex++;
+      return {
+        template: currentTemplate,
+        currentIndex: newIndex,
+        isCompleting
+      };
+    });
+  };
 
   generateTemplate = (data, i) => {
+    const { currentIndex, searchQuery } = this.state;
     const { component, ...props } = data;
-    const events = {};
     const Component = ComponentMap[component];
 
-    switch (component) {
-      case "query":
-        events.onChange = e => this.onTextInputChange(e, i);
-        break;
+    if (component === FormComponents.Query) {
+      props.onChange = e => {
+        this.onTextInputChange(i, e.target.value);
+      };
+      props.onNonEditClick = e => {
+        this.onNonEditClick(i);
+      };
     }
 
-    return <Component {...props} {...events} />;
+    if (component === FormComponents.Actions) {
+      props.onClick = nextTemplate => {
+        this.pushNextTemplate(nextTemplate, true);
+      };
+    }
+
+    return (
+      <Component
+        key={i}
+        editable={currentIndex === i}
+        value={_get(searchQuery[i], "value")}
+        {...props}
+      />
+    );
   };
 
   render() {
     const { onSubmit } = this.props;
-    const { searchQuery, template } = this.state;
+    const { searchQuery, isCompleting, template } = this.state;
     const initial = searchQuery.length === 0;
 
     return (
-      <form id="searchQuery" onSubmit={e => this.onFormSubmit(e, searchQuery)}>
+      <form id="searchQuery" onSubmit={this.onFormSubmit}>
         {template.map(this.generateTemplate)}
+        <div className="search">
+          <button className="btn">
+            {isCompleting ? "Search" : "Continue"}
+          </button>
+        </div>
       </form>
     );
   }

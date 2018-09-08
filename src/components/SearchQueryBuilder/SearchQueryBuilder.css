@@ -20,8 +20,9 @@
 
 #searchQuery .queryLine span.value {
   color: #2e61fb;
+  border-bottom: 2px dotted #dddddd;
+  padding: 6px 0;
 }
-
 
 #searchQuery .actionButtons {
   margin-top: 24px;
@@ -67,8 +68,8 @@
 }
 
 #searchQuery input::placeholder {
-    color: #b0b0b0;
-    opacity: 1;
+  color: #b0b0b0;
+  opacity: 1;
 }
 
 #searchQuery input:-ms-input-placeholder {

@@ -2,7 +2,14 @@ import React, { Component } from "react";
 
 class QueryLine extends Component {
   render() {
-    const { editable = true, label, value, placeholder, onChange } = this.props;
+    const {
+      editable = true,
+      label,
+      value,
+      placeholder,
+      onChange,
+      onNonEditClick
+    } = this.props;
     if (editable) {
       return (
         <div className="queryLine">
@@ -20,7 +27,9 @@ class QueryLine extends Component {
     return (
       <div className="queryLine non-active">
         <span className="label">{label}</span>
-        <span className="value">{value}</span>
+        <span className="value" onClick={onNonEditClick}>
+          {value}
+        </span>
       </div>
     );
   }
