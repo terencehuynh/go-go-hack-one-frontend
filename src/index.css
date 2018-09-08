@@ -2,4 +2,17 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 16px;
+  background: #f6f6f8;
+  color: #3f3f3f;
+}
+
+.app::before {
+  background: #3e4545;
+  position: absolute;
+  right: 0;
+  width: 35%;
+  top: 0;
+  bottom: 0;
+  content: " ";
 }

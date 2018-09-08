@@ -1,0 +1,80 @@
+#searchQuery {
+  padding: 100px 0;
+}
+
+#searchQuery .queryLine {
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 2.2625rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+#searchQuery .queryLine.non-active {
+  display: block;
+}
+
+#searchQuery .queryLine span.label {
+  margin-right: 8px;
+}
+
+#searchQuery .queryLine span.value {
+  color: #2e61fb;
+}
+
+
+#searchQuery .actionButtons {
+  margin-top: 24px;
+}
+
+#searchQuery .actionButtons .label {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+#searchQuery .actionButtons .btn,
+#searchQuery .search .btn {
+  background-color: #2e61fb;
+  color: white;
+  margin-right: 12px;
+  font-size: 1.125rem;
+  letter-spacing: 0;
+}
+
+#searchQuery .search {
+  margin-top: 60px;
+}
+
+#searchQuery .search .btn {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#searchQuery input {
+  font-size: 2.2625rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #dddddd;
+  color: #2e61fb;
+  outline: none;
+  flex: 1;
+}
+
+#searchQuery input::placeholder {
+    color: #b0b0b0;
+    opacity: 1;
+}
+
+#searchQuery input:-ms-input-placeholder {
+  color: #b0b0b0;
+}
+
+#searchQuery input::-ms-input-placeholder {
+  color: #b0b0b0;
+}

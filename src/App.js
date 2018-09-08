@@ -1,18 +1,25 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import OneGovHeader from "./components/OneGovHeader";
+import SearchQueryBuilder from "./components/SearchQueryBuilder";
+import OneGovFooter from "./components/OneGovFooter";
+import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="app">
+        <div className="container">
+          <div className="col-8">
+            <OneGovHeader />
+            <SearchQueryBuilder
+              onSubmit={(event, data) => {
+                event.preventDefault();
+                console.log("Submitted");
+              }}
+            />
+            <OneGovFooter />
+          </div>
+        </div>
       </div>
     );
   }

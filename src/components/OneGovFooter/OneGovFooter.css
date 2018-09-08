@@ -1,0 +1,28 @@
+footer {
+  margin: 0 0 42px;
+}
+
+footer:before {
+  width: 20px;
+  height: 3px;
+  background: #b6b6b6;
+  content: " ";
+  display: block;
+  margin-bottom: 18px;
+}
+
+footer p {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  margin: 0 0 3px;
+  color: #acacac;
+}
+
+footer a {
+  color: #acacac;
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: #3e4545;
+}
