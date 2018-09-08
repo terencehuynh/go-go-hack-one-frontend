@@ -44,7 +44,8 @@ class Autocomplete extends React.Component {
 
   handleAutocomplete = event => {
     if (event.key === "Tab") {
-      this.props.submitOption(this.state.suggestions[0]);
+      this.state.suggestions.length !== 0 &&
+        this.props.submitOption(this.state.suggestions[0]);
       event.preventDefault();
     }
   };
@@ -86,8 +87,9 @@ class Autocomplete extends React.Component {
               border: "1px solid grey"
             }}
           >
-            {this.state.suggestions.map(suggestion => (
+            {this.state.suggestions.map((suggestion, i) => (
               <li
+                key={i}
                 style={{ minWidth: 220, padding: 16, boxSizing: "border-box" }}
               >
                 {suggestion}
