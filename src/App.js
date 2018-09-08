@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import OneGovHeader from "./components/OneGovHeader";
 import SearchQueryBuilder from "./components/SearchQueryBuilder";
 import OneGovFooter from "./components/OneGovFooter";
-import "./App.css";
+import Autocomplete from "./components/Autocomplete";
 
 class App extends Component {
   render() {
@@ -17,6 +17,12 @@ class App extends Component {
                 console.log("Submitted");
               }}
             />
+            <Autocomplete
+              prompt="I want to find..."
+              options={["patents", "records", "reports"]}
+              submitOption={result => console.log(result)}
+            />
+
             <OneGovFooter />
           </div>
         </div>
