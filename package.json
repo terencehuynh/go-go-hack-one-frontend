@@ -4,11 +4,12 @@
   "private": true,
   "dependencies": {
     "lodash.get": "^4.4.2",
-    "bulma": "^0.7.1",
     "prop-types": "^15.6.2",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "react-spinners": "^0.4.5",
+    "reactstrap": "^6.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

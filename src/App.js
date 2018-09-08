@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import OneGovHeader from "./components/OneGovHeader";
 import SearchQueryBuilder from "./components/SearchQueryBuilder";
 import OneGovFooter from "./components/OneGovFooter";
+import Results from "./components/Results";
 
 class App extends Component {
   render() {
@@ -15,6 +16,8 @@ class App extends Component {
                 console.log("Submitted", data);
               }}
             />
+            <Results />
+
             <OneGovFooter />
           </div>
         </div>
