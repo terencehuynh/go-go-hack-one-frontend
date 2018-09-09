@@ -6,17 +6,12 @@ import Results from "./components/Results";
 
 class App extends Component {
   state = {
-    isResults: true,
-    query: [
-      {
-        label: "Help me find",
-        value: "patents"
-      },
-      {
-        label: "owned by",
-        value: "Microsoft"
-      }
-    ]
+    isResults: false,
+    query: []
+  };
+
+  handleSearchQuerySubmit = query => {
+    this.setState({ query, isResults: true });
   };
 
   handleSearchAgainClick = () => {
@@ -39,12 +34,7 @@ class App extends Component {
                 handleSearchAgainClick={this.handleSearchAgainClick}
               />
             ) : (
-              <SearchQueryBuilder
-                onSubmit={query => {
-                  console.log("Submitted", query);
-                  this.setState({ query, isResults: true });
-                }}
-              />
+              <SearchQueryBuilder onSubmit={this.handleSearchQuerySubmit} />
             )}
             <OneGovFooter />
           </div>
