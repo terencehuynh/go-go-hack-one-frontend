@@ -46,8 +46,11 @@ class Autocomplete extends Component {
   };
 
   handleAutocomplete = event => {
+    const { suggestions } = this.state;
     if (event.key === "Tab") {
       event.preventDefault();
+      event.target.value = suggestions[0];
+      event.target.blur();
     }
   };
 
