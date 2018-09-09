@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     const { query, isResults } = this.state;
     return (
-      <div className="app theme-melbourne">
+      <div className="app theme-canberra">
         <div className="container">
           <div className="col-md-10 col-lg-8">
             <OneGovHeader />
