@@ -1,0 +1,163 @@
+#searchQuery {
+  padding: 100px 0;
+}
+
+#searchQuery .queryLine {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+#searchQuery .queryLine.non-active {
+  display: block;
+}
+
+#searchQuery .queryLine span.label {
+  margin-right: 8px;
+}
+
+#searchQuery .queryLine span.value {
+  color: #2e61fb;
+  border-bottom: 2px dotted #dddddd;
+  padding: 6px 0;
+}
+
+#searchQuery .actionButtons {
+  margin-top: 24px;
+}
+
+#searchQuery .actionButtons .label {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+#searchQuery .actionButtons .btn {
+  display: block;
+}
+
+#searchQuery .bottom {
+  margin-top: 60px;
+}
+
+#searchQuery .continue .btn {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #2e61fb;
+  background: transparent;
+  border: 2px solid #2e61fb;
+}
+
+#searchQuery .continue .btn:hover {
+  color: white;
+  background: #2e61fb;
+}
+
+#searchQuery .search .btn {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+#searchQuery .autocomplete-container {
+  position: relative;
+}
+
+#searchQuery input {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #dddddd;
+  color: #2e61fb;
+  outline: none;
+  width: 100%;
+}
+
+#searchQuery input:focus {
+  border-bottom: 2px solid #2e61fb;
+}
+
+#searchQuery input.autocomplete-background {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  color: #ddd;
+}
+
+#searchQuery input::placeholder {
+  color: #b0b0b0;
+  opacity: 1;
+}
+
+#searchQuery input:-ms-input-placeholder {
+  color: #b0b0b0;
+}
+
+#searchQuery input::-ms-input-placeholder {
+  color: #b0b0b0;
+}
+
+#searchQuery .menu-list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 44px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+}
+
+#searchQuery .menu-list li {
+  font-size: 1.3125rem;
+  letter-spacing: 0;
+  margin-bottom: 2px;
+  font-weight: 200;
+}
+
+#searchQuery .menu-list li.titleBlock {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  #searchQuery .queryLine {
+    font-size: 2.2625rem;
+    letter-spacing: -1px;
+  }
+
+  #searchQuery input {
+    font-size: 2.2625rem;
+  }
+
+  #searchQuery .menu-list {
+    top: 56px;
+  }
+
+  #searchQuery .actionButtons .btn {
+    display: inline;
+  }
+}
+
+@media (min-width: 1048px) {
+  #searchQuery .queryLine {
+    display: flex;
+  }
+
+  #searchQuery input {
+    width: auto;
+  }
+
+  #searchQuery .autocomplete-container {
+    position: relative;
+  }
+}

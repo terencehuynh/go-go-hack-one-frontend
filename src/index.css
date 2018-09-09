@@ -2,4 +2,66 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 16px;
+  background: #f6f6f8;
+  color: #3f3f3f;
+}
+
+.app::before {
+  background: #3e4545;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  content: " ";
+}
+
+.btn {
+  background-color: #2e61fb;
+  color: white;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  font-size: 1.125rem;
+  letter-spacing: 0;
+}
+
+.btn:hover {
+  color: white;
+  background-color: #1d45be;
+}
+
+.btn:not([href]):not([tabindex]),
+.btn:not([href]):not([tabindex]):hover {
+  color: white;
+}
+
+@media (min-width: 768px) {
+  .app::before {
+    width: 15vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .app::before {
+    width: 30vw;
+  }
+}
+
+@media (min-width: 1100px) {
+  .app::before {
+    width: 35vw;
+  }
+  .app.theme-melbourne::before {
+    background-image: url(img/melbourne.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: center;
+  }
+
+  .app.theme-canberra::before {
+    background-image: url(img/canberra.jpg);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center;
+  }
 }
