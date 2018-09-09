@@ -3,7 +3,7 @@ header {
 }
 
 a.logo {
-  background-image: url('../../img/onegov-logo.png');
+  background-image: url("../../img/onegov-logo.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 70px;
@@ -14,7 +14,7 @@ a.logo {
 
 p.message {
   margin-top: 28px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 200;
   letter-spacing: -1px;
   line-height: 1.25;
@@ -27,4 +27,10 @@ p.message span {
 p.message a {
   color: #2e61fb;
   font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  p.message {
+    font-size: 2rem;
+  }
 }

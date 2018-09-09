@@ -9,7 +9,7 @@ class App extends Component {
     return (
       <div className="app">
         <div className="container">
-          <div className="col-8">
+          <div className="col-md-10 col-lg-8">
             <OneGovHeader />
             <SearchQueryBuilder
               onSubmit={data => {

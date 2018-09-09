@@ -45,6 +45,7 @@ class SearchQueryBuilder extends Component {
   state = {
     isCompleting: false,
     currentIndex: 0,
+    showBottom: true,
     template: [
       {
         component: "query",
@@ -101,19 +102,24 @@ class SearchQueryBuilder extends Component {
     this.setState(prevState => {
       const currentTemplate = prevState.template;
       const newTemplate = currentTemplate.splice(i + 1);
-      return { currentIndex: i };
+      return { currentIndex: i, isCompleting: false };
     });
   };
 
   pushNextTemplate = (template, removeLast = false) => {
     this.setState(prevState => {
-      const { isCompleting = false } = template;
+      const { component, isCompleting = false } = template;
       let currentTemplate = prevState.template;
       let newIndex = prevState.currentIndex;
+      let showBottom = true;
 
       if (removeLast) {
         currentTemplate.pop();
         newIndex--;
+      }
+
+      if (component === FormComponents.Actions) {
+        showBottom = false;
       }
 
       currentTemplate.push(template);
@@ -121,7 +127,8 @@ class SearchQueryBuilder extends Component {
       return {
         template: currentTemplate,
         currentIndex: newIndex,
-        isCompleting
+        isCompleting,
+        showBottom
       };
     });
   };
@@ -158,17 +165,19 @@ class SearchQueryBuilder extends Component {
 
   render() {
     const { onSubmit } = this.props;
-    const { searchQuery, isCompleting, template } = this.state;
+    const { searchQuery, isCompleting, showBottom, template } = this.state;
     const initial = searchQuery.length === 0;
 
     return (
       <form id="searchQuery" onSubmit={this.onFormSubmit}>
         {template.map(this.generateTemplate)}
-        <div className="search">
-          <button className="btn">
-            {isCompleting ? "Search" : "Continue"}
-          </button>
-        </div>
+        {showBottom && (
+          <div className={isCompleting ? "bottom search" : "bottom continue"}>
+            <button className="btn">
+              {isCompleting ? "Search" : "Continue"}
+            </button>
+          </div>
+        )}
       </form>
     );
   }

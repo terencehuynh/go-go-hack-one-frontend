@@ -16,3 +16,15 @@ body {
   bottom: 0;
   content: " ";
 }
+
+@media (min-width: 768px) {
+  .app::before {
+    width: 15vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .app::before {
+    width: 35vw;
+  }
+}

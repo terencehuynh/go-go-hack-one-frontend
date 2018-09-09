@@ -29,7 +29,7 @@ class Autocomplete extends React.Component {
   render = () => {
     const { placeholder, value, onSuggestedClick } = this.props;
     return (
-      <div style={{ display: "inline", position: "relative" }}>
+      <div className="autocomplete-container">
         <input
           key="autocomplete"
           type="text"

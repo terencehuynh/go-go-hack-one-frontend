@@ -3,9 +3,9 @@
 }
 
 #searchQuery .queryLine {
-  display: flex;
+  display: block;
   margin-bottom: 10px;
-  font-size: 2.2625rem;
+  font-size: 1.75rem;
   font-weight: 700;
   letter-spacing: -1px;
 }
@@ -36,16 +36,34 @@
 }
 
 #searchQuery .actionButtons .btn,
-#searchQuery .search .btn {
+#searchQuery .bottom .btn {
   background-color: #2e61fb;
   color: white;
   margin-right: 12px;
+  margin-bottom: 12px;
   font-size: 1.125rem;
   letter-spacing: 0;
 }
 
-#searchQuery .search {
+#searchQuery .actionButtons .btn {
+  display: block;
+}
+
+#searchQuery .bottom {
   margin-top: 60px;
+}
+
+#searchQuery .continue .btn {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #2e61fb;
+  background: transparent;
+  border: 2px solid #2e61fb;
+}
+
+#searchQuery .continue .btn:hover {
+  color: white;
+  background: #2e61fb;
 }
 
 #searchQuery .search .btn {
@@ -54,8 +72,12 @@
   text-transform: uppercase;
 }
 
+#searchQuery .autocomplete-container {
+  position: relative;
+}
+
 #searchQuery input {
-  font-size: 2.2625rem;
+  font-size: 1.75rem;
   font-weight: 700;
   letter-spacing: -1px;
   padding: 0;
@@ -64,7 +86,11 @@
   border-bottom: 2px solid #dddddd;
   color: #2e61fb;
   outline: none;
-  flex: 1;
+  width: 100%;
+}
+
+#searchQuery input:focus {
+  border-bottom: 2px solid #2e61fb;
 }
 
 #searchQuery input.autocomplete-background {
@@ -92,9 +118,8 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: 56px;
+  top: 44px;
   background-color: #fff;
-  border: 1px solid #ddd;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -104,4 +129,43 @@
   font-size: 1.3125rem;
   letter-spacing: 0;
   padding: 8px;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+
+#searchQuery .menu-list li:first-child {
+  border: 1px solid #ddd;
+}
+
+@media (min-width: 768px) {
+  #searchQuery .queryLine {
+    font-size: 2.2625rem;
+    letter-spacing: -1px;
+  }
+
+  #searchQuery input {
+    font-size: 2.2625rem;
+  }
+
+  #searchQuery .menu-list {
+    top: 56px;
+  }
+
+  #searchQuery .actionButtons .btn {
+    display: inline;
+  }
+}
+
+@media (min-width: 992px) {
+  #searchQuery .queryLine {
+    display: flex;
+  }
+
+  #searchQuery input {
+    width: auto;
+  }
+
+  #searchQuery .autocomplete-container {
+    position: relative;
+  }
 }
