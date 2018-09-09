@@ -1,0 +1,15 @@
+.results {
+  margin: 56px 0;
+}
+.results .resultHeader {
+  font-size: 1rem;
+  color: #969696;
+  margin-bottom: 24px;
+}
+
+.results .result {
+  padding: 16px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  margin: 24px 0;
+}

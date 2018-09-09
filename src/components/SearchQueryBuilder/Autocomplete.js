@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment, Component } from "react";
 import PropTypes from "prop-types";
 
 import constants from "../../constants";
 
-class Autocomplete extends React.Component {
+class Autocomplete extends Component {
   state = { suggestions: [], value: this.props.value };
 
   handleChange = event => {
@@ -28,6 +28,7 @@ class Autocomplete extends React.Component {
 
   render = () => {
     const { placeholder, value, onSuggestedClick } = this.props;
+    const { suggestions } = this.state;
     return (
       <div className="autocomplete-container">
         <input
@@ -48,11 +49,14 @@ class Autocomplete extends React.Component {
             this.state.suggestions.length > 0 ? this.state.suggestions[0] : ""
           }
         />
-        <ul className="menu-list">
-          {this.state.suggestions.map((suggestion, i) => (
-            <li key={i}>{suggestion}</li>
-          ))}
-        </ul>
+        {suggestions.length > 0 && (
+          <ul className="menu-list">
+            <li className="titleBlock">Suggested categories</li>
+            {this.state.suggestions.map((suggestion, i) => (
+              <li key={i}>{suggestion}</li>
+            ))}
+          </ul>
+        )}
       </div>
     );
   };

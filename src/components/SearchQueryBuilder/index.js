@@ -4,6 +4,7 @@ import _get from "lodash.get";
 import QueryLine from "./QueryLine";
 import ActionButtons from "./ActionButtons";
 import "./SearchQueryBuilder.css";
+import steps from "../../paths/gateway";
 
 const FormComponents = {
   Query: "query",
@@ -15,31 +16,7 @@ const ComponentMap = {
   [FormComponents.Actions]: ActionButtons
 };
 
-const steps = {
-  patents: {
-    component: "actions",
-    actions: {
-      "by number": {
-        component: "query",
-        label: "by",
-        placeholder: "number",
-        isCompleting: true
-      },
-      "owned by": {
-        component: "query",
-        label: "owned by",
-        placeholder: "ABN or company name",
-        isCompleting: true
-      },
-      "related to": {
-        component: "query",
-        label: "related to",
-        placeholder: "topic",
-        isCompleting: true
-      }
-    }
-  }
-};
+const possibleOptions = Object.keys(steps);
 
 class SearchQueryBuilder extends Component {
   state = {
@@ -53,7 +30,8 @@ class SearchQueryBuilder extends Component {
         placeholder: "something",
         isCompleting: false,
         autocomplete: true,
-        options: ["patents", "records", "reports"]
+        options: possibleOptions,
+        showBottom: true
       }
     ],
     searchQuery: []
@@ -102,7 +80,7 @@ class SearchQueryBuilder extends Component {
     this.setState(prevState => {
       const currentTemplate = prevState.template;
       const newTemplate = currentTemplate.splice(i + 1);
-      return { currentIndex: i, isCompleting: false };
+      return { currentIndex: i, isCompleting: false, showBottom: true };
     });
   };
 
@@ -135,7 +113,7 @@ class SearchQueryBuilder extends Component {
 
   generateTemplate = (data, i) => {
     const { currentIndex, searchQuery } = this.state;
-    const { component, ...props } = data;
+    const { component, showBottom, ...props } = data;
     const Component = ComponentMap[component];
 
     if (component === FormComponents.Query) {

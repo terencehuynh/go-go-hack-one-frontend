@@ -35,16 +35,6 @@
   margin-bottom: 4px;
 }
 
-#searchQuery .actionButtons .btn,
-#searchQuery .bottom .btn {
-  background-color: #2e61fb;
-  color: white;
-  margin-right: 12px;
-  margin-bottom: 12px;
-  font-size: 1.125rem;
-  letter-spacing: 0;
-}
-
 #searchQuery .actionButtons .btn {
   display: block;
 }
@@ -120,21 +110,23 @@
   right: 0;
   top: 44px;
   background-color: #fff;
+  border: 1px solid #ddd;
   list-style: none;
   margin: 0;
-  padding: 0;
+  padding: 10px;
 }
 
 #searchQuery .menu-list li {
   font-size: 1.3125rem;
   letter-spacing: 0;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-top: none;
+  margin-bottom: 2px;
+  font-weight: 200;
 }
 
-#searchQuery .menu-list li:first-child {
-  border: 1px solid #ddd;
+#searchQuery .menu-list li.titleBlock {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 @media (min-width: 768px) {
@@ -156,7 +148,7 @@
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1048px) {
   #searchQuery .queryLine {
     display: flex;
   }
