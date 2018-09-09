@@ -3,6 +3,8 @@ import axios from "axios";
 import BarLoader from "react-spinners/BarLoader";
 import { ListGroup, ListGroupItem } from "reactstrap";
 
+import mocks from "../../mocks";
+
 import "./Results.css";
 
 class Results extends Component {
@@ -29,24 +31,52 @@ class Results extends Component {
   }
 
   renderDummy() {
-    const { handleSearchAgainClick } = this.props;
+    const { handleSearchAgainClick, query } = this.props;
+    const queryPath = query[0].value;
+    const mockData = mocks[queryPath];
+
+    if (!mockData || mockData.length === 0) {
+      return (
+        <Fragment>
+          <div className="bottom">
+            <button className="btn" onClick={handleSearchAgainClick}>
+              Search Again
+            </button>
+          </div>
+        </Fragment>
+      ); //return error page
+    }
+
     return (
       <Fragment>
         <h2 className="resultHeader">
           Finding for <strong>{this.renderQuery()}</strong>
         </h2>
-        <section className="result">
-          <h3>Patent</h3>
-        </section>
-        <section className="result">
-          <h3>Patent</h3>
-        </section>
-        <section className="result">
-          <h3>Patent</h3>
-        </section>
-        <section className="result">
-          <h3>Patent</h3>
-        </section>
+        {mockData.map(data => {
+          return (
+            <section className="result">
+              <h3>{data.entityName}</h3>
+              <h4>Other Attributes</h4>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Attribute Name</th>
+                    <th scope="col">Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {!!data.attributes &&
+                    data.attributes.map(attribute => (
+                      <tr key={`attribute-${attribute.attributeID}`}>
+                        <th scope="row">{attribute.attributeName}</th>
+                        <td>{attribute.value}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </section>
+          );
+        })}
         <div className="bottom">
           <button className="btn" onClick={handleSearchAgainClick}>
             Search Again

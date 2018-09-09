@@ -47,10 +47,10 @@ class Autocomplete extends Component {
 
   handleAutocomplete = event => {
     const { suggestions } = this.state;
-    if (event.key === "Tab") {
+    if (event.key === "Tab" && suggestions.length > 0) {
       event.preventDefault();
       event.target.value = suggestions[0];
-      event.target.blur();
+      this.handleChange(event);
     }
   };
 
