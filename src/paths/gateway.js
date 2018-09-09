@@ -82,8 +82,8 @@ module.exports = {
     actions: {
       "have licence plate": {
         component: "query",
-        label: "that have ABN",
-        placeholder: "number",
+        label: "that have",
+        placeholder: "licence plate",
         isCompleting: true
       },
       "owned by": {
