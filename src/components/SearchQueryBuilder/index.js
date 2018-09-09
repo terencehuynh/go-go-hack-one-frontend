@@ -16,7 +16,7 @@ const ComponentMap = {
   [FormComponents.Actions]: ActionButtons
 };
 
-const possibleOptions = Object.keys(steps);
+const suggestions = Object.keys(steps);
 
 class SearchQueryBuilder extends Component {
   state = {
@@ -30,8 +30,8 @@ class SearchQueryBuilder extends Component {
         placeholder: "something",
         isCompleting: false,
         autocomplete: true,
-        options: possibleOptions,
-        showBottom: true
+        options: suggestions,
+        hasNext: true
       }
     ],
     searchQuery: []
@@ -40,16 +40,16 @@ class SearchQueryBuilder extends Component {
   onFormSubmit = e => {
     const { onSubmit } = this.props;
     const { isCompleting, searchQuery, currentIndex } = this.state;
+
+    const currentQuery = _get(searchQuery[currentIndex], "value");
     e.preventDefault();
 
-    if (isCompleting) {
-      onSubmit && onSubmit(searchQuery);
+    if (!currentQuery) {
       return;
     }
 
-    const currentQuery = _get(searchQuery[currentIndex], "value");
-
-    if (!currentQuery) {
+    if (isCompleting) {
+      onSubmit && onSubmit(searchQuery);
       return;
     }
 
